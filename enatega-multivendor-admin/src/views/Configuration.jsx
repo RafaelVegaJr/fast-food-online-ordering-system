@@ -17,7 +17,7 @@ import SendGridConfiguration from '../components/Configuration/SendGrid/SendGrid
 
 import SentryConfiguration from '../components/Configuration/Sentry/Sentry'
 import GoogleApiKeyConfiguration from '../components/Configuration/GoogleApi/GoogleApi'
-import CloudinaryConfiguration from '../components/Configuration/ Cloudinary/ Cloudinary'
+// import CloudinaryConfiguration from '../components/Configuration/ Cloudinary/ Cloudinary'
 import AmplitudeApiKeyConfiguration from '../components/Configuration/Amplitude/Amplitude'
 import GoogleClientIDConfiguration from '../components/Configuration/GoogleClient/GoogleClient'
 import WebConfiguration from '../components/Configuration/Web/Web'
@@ -34,15 +34,14 @@ const Configuration = props => {
   )
 
   const { t } = props
-  
+
   return (
     <>
       <Header />
       {errorQuery && t('Error')}
       {loadingQuery ? (
         t('LoadingDots')
-      ) : (
-        data.configuration.isPaidVersion?
+      ) : data.configuration.isPaidVersion ? (
         <Grid container ml={2} spacing={2}>
           <Grid item sx={12} md={7} lg={7}>
             <EmailConfiguration
@@ -79,10 +78,12 @@ const Configuration = props => {
             />
           </Grid>
           <Grid item sx={12} md={12} lg={5}>
-                <DeliveryRateConfiguration
-                  deliveryRate={data && data?.configuration?.deliveryRate}
-                  costType={data && data?.configuration?.costType}
-              />
+            <DeliveryRateConfiguration
+              deliveryRate={
+                data && data.configuration && data.configuration.deliveryRate
+              }
+              costType={data && data.configuration.costType}
+            />
           </Grid>
           <Grid item sx={12} md={12} lg={5}>
             <TwilioConfiguration
@@ -130,14 +131,7 @@ const Configuration = props => {
               googleApiKey={data && data.configuration.googleApiKey}
             />
           </Grid>
-          <Grid item sx={12} md={12} lg={5}>
-            <CloudinaryConfiguration
-              cloudinaryUploadUrl={
-                data && data.configuration.cloudinaryUploadUrl
-              }
-              cloudinaryApiKey={data && data.configuration.cloudinaryApiKey}
-            />
-          </Grid>
+
           <Grid item sx={12} md={12} lg={5}>
             <AmplitudeApiKeyConfiguration
               webAmplitudeApiKey={data && data.configuration.webAmplitudeApiKey}
@@ -172,13 +166,14 @@ const Configuration = props => {
             />
           </Grid>
           <Grid item sx={12} md={12} lg={5}>
-          <VerificationConfiguration
-          skipEmailVerification={data.configuration.skipEmailVerification}
-          skipMobileVerification={data.configuration.skipMobileVerification}
+            <VerificationConfiguration
+              skipEmailVerification={data.configuration.skipEmailVerification}
+              skipMobileVerification={data.configuration.skipMobileVerification}
             />
           </Grid>
-        </Grid>:
-        <Configuration1 t={t}/>
+        </Grid>
+      ) : (
+        <Configuration1 t={t} />
       )}
     </>
   )

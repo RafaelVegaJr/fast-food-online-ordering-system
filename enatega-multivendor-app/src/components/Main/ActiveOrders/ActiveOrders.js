@@ -62,8 +62,8 @@ const ActiveOrders = ({ onActiveOrdersChange }) => {
     <Modalize alwaysOpen={MODAL_HEIGHT} withHandle={false} modalHeight={MODAL_HEIGHT} modalStyle={modalStyle}>
       <View style={{ marginTop: scale(20), marginHorizontal: scale(10) }}>
         <View style={{ justifyContent: 'space-between', flexDirection: 'row' }}>
-          <TextDefault Regular textColor={currentTheme.fontGrayNew}>{t('estimatedDeliveryTime')}</TextDefault>
-          <TouchableOpacity onPress={() => onPressDetails(order)}>
+        <TextDefault Regular textColor={currentTheme.fontGrayNew}>⏱️ {t('estimatedDeliveryTime')}</TextDefault>
+        <TouchableOpacity onPress={() => onPressDetails(order)}>
             <TextDefault textColor={currentTheme.gray700} bolder>{t('details')}</TextDefault>
           </TouchableOpacity>
         </View>
@@ -94,3 +94,4 @@ const ActiveOrders = ({ onActiveOrdersChange }) => {
 }
 
 export default ActiveOrders
+

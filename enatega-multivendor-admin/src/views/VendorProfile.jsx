@@ -28,6 +28,8 @@ import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import { SHOP_TYPE } from '../utils/enums'
 import Dropdown from '../components/Dropdown'
+import AccessTimeIcon from '@mui/icons-material/AccessTime'
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney'
 
 const GET_PROFILE = gql`
   ${getRestaurantProfile}
@@ -414,7 +416,6 @@ const VendorProfile = () => {
                     </Box>
                   </Grid>
                 </Grid>
-
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
                     <Box>
@@ -437,9 +438,15 @@ const VendorProfile = () => {
                             ? globalClasses.inputSuccess
                             : ''
                         ]}
+                        startAdornment={
+                          <InputAdornment position="start">
+                            <AccessTimeIcon fontSize="small" />
+                          </InputAdornment>
+                        }
                       />
                     </Box>
                   </Grid>
+
                   <Grid item xs={12} sm={6}>
                     <Box>
                       <Typography className={classes.labelText}>
@@ -451,8 +458,8 @@ const VendorProfile = () => {
                         id="input-type-minimum-order"
                         placeholder={t('MinOrder')}
                         type="number"
-                        disableUnderline
                         defaultValue={data && data.restaurant.minimumOrder}
+                        disableUnderline
                         className={[
                           globalClasses.input,
                           minimumOrderError === false
@@ -461,10 +468,16 @@ const VendorProfile = () => {
                             ? globalClasses.inputSuccess
                             : ''
                         ]}
+                        startAdornment={
+                          <InputAdornment position="start">
+                            <AttachMoneyIcon fontSize="small" />
+                          </InputAdornment>
+                        }
                       />
                     </Box>
                   </Grid>
                 </Grid>
+
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
                     <Box>
